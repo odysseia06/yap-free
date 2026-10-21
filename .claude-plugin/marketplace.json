@@ -1,0 +1,14 @@
+{
+  "name": "yap-free",
+  "description": "Product-interface copy guidance for coding agents.",
+  "owner": {
+    "name": "yap-free contributors"
+  },
+  "plugins": [
+    {
+      "name": "yap-free",
+      "source": "./",
+      "description": "Remove unnecessary product-interface copy while preserving labels, guidance, and feedback users need."
+    }
+  ]
+}

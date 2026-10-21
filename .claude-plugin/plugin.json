@@ -1,0 +1,10 @@
+{
+  "name": "yap-free",
+  "version": "1.0.0",
+  "description": "Remove unnecessary product-interface copy while preserving labels, guidance, and feedback users need.",
+  "author": {
+    "name": "yap-free contributors"
+  },
+  "license": "MIT",
+  "skills": ["./."]
+}
