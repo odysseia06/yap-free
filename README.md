@@ -65,8 +65,6 @@ See the [Codex CLI documentation](https://learn.chatgpt.com/docs/cli/reference).
 
 Open an issue or pull request with the user's task, artifact and domain context, and a before/after example. Keep changes focused on what serves the audience while preserving meaning and function across the supported domains.
 
-The version remains `1.0.0` pending installed-host compatibility and behavioral evidence. Local fixture preparation and static checks are described in [evals/README.md](evals/README.md).
-
 ## License
 
 [MIT](LICENSE)
