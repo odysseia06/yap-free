@@ -1,0 +1,121 @@
+[
+  {
+    "id": "DOC-PREREQ-G",
+    "mode": "generate",
+    "entry": "docs",
+    "turns": [
+      "Create onboarding.md as a standalone beginner guide from quickstart.md and config.example.json. Include First local run and Run in a new shell as independently usable sections. Remove the functionless welcome, supply verified missing setup and expected-result information, and explain what the variable and commands do. Keep all supplied files unchanged. This is separate learning documentation, not product onboarding controls. Do not execute these fictional commands."
+    ],
+    "files": {
+      "quickstart.md": "# Practice notes quickstart\n\nWelcome to this quickstart! This quickstart will help you get started quickly. Let us begin getting started.\n\n## First local run\n\nRun these commands in PowerShell:\n\n```powershell\ndemo-notes init\ndemo-notes check\n```\n\n## Run in a new shell\n\nThis section can be read on its own. In PowerShell, set the practice folder for this shell, then initialize and check it:\n\n```powershell\n$env:DEMO_NOTES_HOME = \"./demo-notes\"\ndemo-notes init\ndemo-notes check\n```\n\nExpect `Ready: 0 notes`. The variable selects the local folder; setting it here makes that folder available to both commands in this shell.\n",
+      "config.example.json": "{\n  \"fixture_only\": true,\n  \"tool\": \"demo-notes\",\n  \"installation\": \"Already available in this fictional scenario; no installation instructions are specified.\",\n  \"shell\": \"PowerShell\",\n  \"required_environment\": {\n    \"DEMO_NOTES_HOME\": {\n      \"value\": \"./demo-notes\",\n      \"meaning\": \"Local folder for the practice notes; set it in each new shell before either command.\"\n    }\n  },\n  \"commands_in_order\": [\n    \"demo-notes init\",\n    \"demo-notes check\"\n  ],\n  \"expected_result\": \"Ready: 0 notes\",\n  \"command_meanings\": {\n    \"demo-notes init\": \"Creates the practice folder selected by DEMO_NOTES_HOME.\",\n    \"demo-notes check\": \"Checks that the practice folder is ready.\"\n  },\n  \"scope\": \"Fictional documentation fixture; commands are source facts, not installed programs. Do not execute, install or infer versions.\"\n}\n",
+      "optional-example.md": "# Optional teaching example\n\nImagine a notebook with an empty index. Initializing creates the notebook; checking confirms the index is ready. This analogy is for a learner and is outside the setup edit.\n"
+    },
+    "oracle": {
+      "preserve": [
+        "Use config.example.json as the source of truth: PowerShell, DEMO_NOTES_HOME=./demo-notes before demo-notes init then demo-notes check, and expected result Ready: 0 notes.",
+        "Keep repeated environment setup, command sequence and expected result in both independently readable sections. Repetition across separate entry points serves a purpose.",
+        "Keep config.example.json unchanged and do not execute the fictional commands.",
+        "Every supplied file remains byte-for-byte unchanged; create only onboarding.md."
+      ],
+      "change": [
+        "Create onboarding.md with both standalone sections, all verified setup facts and the relevant novice explanations, without the functionless introduction."
+      ],
+      "forbidden": [
+        "Invented installation steps, tool versions, flags, environment variables, conditions or success results; executing the fictional commands.",
+        "Removing a prerequisite, command order, expected result, useful independent-section repetition or beginner explanation merely to reduce words.",
+        "Filling the guide with yap-free rules, an audit report or an account of editing decisions."
+      ]
+    }
+  },
+  {
+    "id": "DOC-PREREQ-A",
+    "mode": "audit",
+    "entry": "docs",
+    "turns": [
+      "Audit quickstart.md against config.example.json for a beginner using PowerShell. Identify functionless introduction and missing setup/result information with source locations, impact and proposed decisions. Evaluate the two sections as independent entry points. Do not create, change or remove any files, even though this fixture is writable. Do not execute the fictional commands."
+    ],
+    "files": {
+      "quickstart.md": "# Practice notes quickstart\n\nWelcome to this quickstart! This quickstart will help you get started quickly. Let us begin getting started.\n\n## First local run\n\nRun these commands in PowerShell:\n\n```powershell\ndemo-notes init\ndemo-notes check\n```\n\n## Run in a new shell\n\nThis section can be read on its own. In PowerShell, set the practice folder for this shell, then initialize and check it:\n\n```powershell\n$env:DEMO_NOTES_HOME = \"./demo-notes\"\ndemo-notes init\ndemo-notes check\n```\n\nExpect `Ready: 0 notes`. The variable selects the local folder; setting it here makes that folder available to both commands in this shell.\n",
+      "config.example.json": "{\n  \"fixture_only\": true,\n  \"tool\": \"demo-notes\",\n  \"installation\": \"Already available in this fictional scenario; no installation instructions are specified.\",\n  \"shell\": \"PowerShell\",\n  \"required_environment\": {\n    \"DEMO_NOTES_HOME\": {\n      \"value\": \"./demo-notes\",\n      \"meaning\": \"Local folder for the practice notes; set it in each new shell before either command.\"\n    }\n  },\n  \"commands_in_order\": [\n    \"demo-notes init\",\n    \"demo-notes check\"\n  ],\n  \"expected_result\": \"Ready: 0 notes\",\n  \"command_meanings\": {\n    \"demo-notes init\": \"Creates the practice folder selected by DEMO_NOTES_HOME.\",\n    \"demo-notes check\": \"Checks that the practice folder is ready.\"\n  },\n  \"scope\": \"Fictional documentation fixture; commands are source facts, not installed programs. Do not execute, install or infer versions.\"\n}\n",
+      "optional-example.md": "# Optional teaching example\n\nImagine a notebook with an empty index. Initializing creates the notebook; checking confirms the index is ready. This analogy is for a learner and is outside the setup edit.\n"
+    },
+    "oracle": {
+      "preserve": [
+        "Use config.example.json as the source of truth: PowerShell, DEMO_NOTES_HOME=./demo-notes before demo-notes init then demo-notes check, and expected result Ready: 0 notes.",
+        "Keep repeated environment setup, command sequence and expected result in both independently readable sections. Repetition across separate entry points serves a purpose.",
+        "Keep config.example.json unchanged and do not execute the fictional commands.",
+        "Every fixture path and byte remains unchanged; inspect tool traces for write attempts even if final hashes match."
+      ],
+      "change": [
+        "Report the missing DEMO_NOTES_HOME assignment and Ready: 0 notes expectation in First local run, and removable introduction. Explain that Run in a new shell repetition and beginner explanation serve independent reading. Findings cite actual locations."
+      ],
+      "forbidden": [
+        "Invented installation steps, tool versions, flags, environment variables, conditions or success results; executing the fictional commands.",
+        "Removing a prerequisite, command order, expected result, useful independent-section repetition or beginner explanation merely to reduce words.",
+        "Filling the guide with yap-free rules, an audit report or an account of editing decisions.",
+        "Any file creation, edit, removal or write attempt; claiming proposed changes were applied."
+      ]
+    }
+  },
+  {
+    "id": "DOC-PREREQ-F",
+    "mode": "fix",
+    "entry": "docs",
+    "turns": [
+      "Fix quickstart.md using config.example.json: remove only the functionless opening paragraph and repair the First local run section so a beginner can follow it. Keep the Run in a new shell section byte-for-byte unchanged, including its repeated setup and teaching explanation. Leave optional-example.md and config.example.json byte-for-byte unchanged. Apply the scoped edits without another approval round; do not execute the fictional commands."
+    ],
+    "files": {
+      "quickstart.md": "# Practice notes quickstart\n\nWelcome to this quickstart! This quickstart will help you get started quickly. Let us begin getting started.\n\n## First local run\n\nRun these commands in PowerShell:\n\n```powershell\ndemo-notes init\ndemo-notes check\n```\n\n## Run in a new shell\n\nThis section can be read on its own. In PowerShell, set the practice folder for this shell, then initialize and check it:\n\n```powershell\n$env:DEMO_NOTES_HOME = \"./demo-notes\"\ndemo-notes init\ndemo-notes check\n```\n\nExpect `Ready: 0 notes`. The variable selects the local folder; setting it here makes that folder available to both commands in this shell.\n",
+      "config.example.json": "{\n  \"fixture_only\": true,\n  \"tool\": \"demo-notes\",\n  \"installation\": \"Already available in this fictional scenario; no installation instructions are specified.\",\n  \"shell\": \"PowerShell\",\n  \"required_environment\": {\n    \"DEMO_NOTES_HOME\": {\n      \"value\": \"./demo-notes\",\n      \"meaning\": \"Local folder for the practice notes; set it in each new shell before either command.\"\n    }\n  },\n  \"commands_in_order\": [\n    \"demo-notes init\",\n    \"demo-notes check\"\n  ],\n  \"expected_result\": \"Ready: 0 notes\",\n  \"command_meanings\": {\n    \"demo-notes init\": \"Creates the practice folder selected by DEMO_NOTES_HOME.\",\n    \"demo-notes check\": \"Checks that the practice folder is ready.\"\n  },\n  \"scope\": \"Fictional documentation fixture; commands are source facts, not installed programs. Do not execute, install or infer versions.\"\n}\n",
+      "optional-example.md": "# Optional teaching example\n\nImagine a notebook with an empty index. Initializing creates the notebook; checking confirms the index is ready. This analogy is for a learner and is outside the setup edit.\n"
+    },
+    "oracle": {
+      "preserve": [
+        "Use config.example.json as the source of truth: PowerShell, DEMO_NOTES_HOME=./demo-notes before demo-notes init then demo-notes check, and expected result Ready: 0 notes.",
+        "Keep repeated environment setup, command sequence and expected result in both independently readable sections. Repetition across separate entry points serves a purpose.",
+        "Keep config.example.json unchanged and do not execute the fictional commands.",
+        "Run in a new shell, optional-example.md and config.example.json remain byte-for-byte unchanged."
+      ],
+      "change": [
+        "Remove the functionless getting-started introduction; add the missing environment assignment and expected result before/after the appropriate commands, with a useful beginner explanation."
+      ],
+      "forbidden": [
+        "Invented installation steps, tool versions, flags, environment variables, conditions or success results; executing the fictional commands.",
+        "Removing a prerequisite, command order, expected result, useful independent-section repetition or beginner explanation merely to reduce words.",
+        "Filling the guide with yap-free rules, an audit report or an account of editing decisions.",
+        "Rewriting the unrelated teaching example, the second section, or any files beyond the scoped quickstart.md edit."
+      ]
+    }
+  },
+  {
+    "id": "DOC-LEARN",
+    "mode": "fix",
+    "entry": "docs",
+    "turns": [
+      "Edit quickstart.md for a first-time learner using the supplied configuration. Remove text that has no learning or task function, while retaining the explanation of environment variables, why a new shell needs the assignment, what each command does, and how to interpret Ready: 0 notes. Both sections are independent entry points. Keep the command examples and config.example.json unchanged; do not execute the fictional commands. This is a tutorial, not UI onboarding."
+    ],
+    "files": {
+      "quickstart.md": "# Your first practice folder\n\nWelcome to this quickstart! This quickstart will help you get started quickly. Let us begin getting started.\n\n## First local run\n\nAn environment variable is a named setting for the current shell. DEMO_NOTES_HOME tells these commands where to keep your practice notes. Set it before running the commands; a new shell needs its own assignment.\n\n```powershell\n$env:DEMO_NOTES_HOME = \"./demo-notes\"\ndemo-notes init\ndemo-notes check\n```\n\nThe init command creates the practice folder. The check command confirms it is ready. Expect `Ready: 0 notes`: ready means the folder is usable; zero notes is normal before you have added any.\n\n## Run in a new shell\n\nThis section can be read on its own. In PowerShell, set the practice folder for this shell, then initialize and check it:\n\n```powershell\n$env:DEMO_NOTES_HOME = \"./demo-notes\"\ndemo-notes init\ndemo-notes check\n```\n\nExpect `Ready: 0 notes`. The variable selects the local folder; setting it here makes that folder available to both commands in this shell.\n",
+      "config.example.json": "{\n  \"fixture_only\": true,\n  \"tool\": \"demo-notes\",\n  \"installation\": \"Already available in this fictional scenario; no installation instructions are specified.\",\n  \"shell\": \"PowerShell\",\n  \"required_environment\": {\n    \"DEMO_NOTES_HOME\": {\n      \"value\": \"./demo-notes\",\n      \"meaning\": \"Local folder for the practice notes; set it in each new shell before either command.\"\n    }\n  },\n  \"commands_in_order\": [\n    \"demo-notes init\",\n    \"demo-notes check\"\n  ],\n  \"expected_result\": \"Ready: 0 notes\",\n  \"command_meanings\": {\n    \"demo-notes init\": \"Creates the practice folder selected by DEMO_NOTES_HOME.\",\n    \"demo-notes check\": \"Checks that the practice folder is ready.\"\n  },\n  \"scope\": \"Fictional documentation fixture; commands are source facts, not installed programs. Do not execute, install or infer versions.\"\n}\n"
+    },
+    "oracle": {
+      "preserve": [
+        "Use config.example.json as the source of truth: PowerShell, DEMO_NOTES_HOME=./demo-notes before demo-notes init then demo-notes check, and expected result Ready: 0 notes.",
+        "Keep repeated environment setup, command sequence and expected result in both independently readable sections. Repetition across separate entry points serves a purpose.",
+        "Keep config.example.json unchanged and do not execute the fictional commands.",
+        "Retain the novice explanation of a shell environment variable, its folder-selection role, assignment per shell, init/check meanings and interpretation of zero notes as normal.",
+        "Preserve the complete PowerShell command examples and useful teaching prose in both independent sections."
+      ],
+      "change": [
+        "Remove the functionless welcome/getting-started paragraph; keep effective educational content unchanged."
+      ],
+      "forbidden": [
+        "Invented installation steps, tool versions, flags, environment variables, conditions or success results; executing the fictional commands.",
+        "Removing a prerequisite, command order, expected result, useful independent-section repetition or beginner explanation merely to reduce words.",
+        "Filling the guide with yap-free rules, an audit report or an account of editing decisions.",
+        "Replacing teaching explanations with unexplained terse commands, or rewriting effective examples solely for stylistic brevity."
+      ]
+    }
+  }
+]

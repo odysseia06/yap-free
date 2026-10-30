@@ -1,6 +1,6 @@
 {
   "name": "yap-free",
-  "description": "Product-interface copy guidance for coding agents.",
+  "description": "Shared guidance for UI copy, CLI output, documentation, and explicitly requested AI communication.",
   "owner": {
     "name": "yap-free contributors"
   },
@@ -8,7 +8,7 @@
     {
       "name": "yap-free",
       "source": "./",
-      "description": "Remove unnecessary product-interface copy while preserving labels, guidance, and feedback users need."
+      "description": "Create, audit, and fix UI copy, human-facing CLI output, task and learning docs, and explicitly requested AI communication while preserving necessary meaning and function."
     }
   ]
 }

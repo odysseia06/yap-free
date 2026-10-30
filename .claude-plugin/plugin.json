@@ -1,10 +1,16 @@
 {
   "name": "yap-free",
   "version": "1.0.0",
-  "description": "Remove unnecessary product-interface copy while preserving labels, guidance, and feedback users need.",
+  "description": "Create, audit, and fix UI copy, human-facing CLI output, task and learning docs, and explicitly requested AI communication while preserving necessary meaning and function.",
   "author": {
     "name": "yap-free contributors"
   },
   "license": "MIT",
-  "skills": ["./."]
+  "skills": [
+    "./",
+    "./skills/yap-free-ui",
+    "./skills/yap-free-cli",
+    "./skills/yap-free-docs",
+    "./skills/yap-free-ai"
+  ]
 }

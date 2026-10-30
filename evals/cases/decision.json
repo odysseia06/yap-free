@@ -1,0 +1,180 @@
+[
+  {
+    "id": "DEC-UI-G",
+    "mode": "generate",
+    "entry": "ui",
+    "turns": ["Create rehearsal.html for volunteer stage managers on a phone using rehearsal-facts.md. You may create that file only. Use semantic HTML; no external assets or services. Include the controls and states this task needs. Do not operate a real show or change the source."],
+    "files": {
+      "rehearsal-facts.md": "# Rehearsal timer\nVolunteers time a silent scene rehearsal, not a public performance. The screen starts with Duration, a required whole number from 1 to 15 minutes, default 4. Start begins the countdown. While running, remaining time is visible and Pause is available. Paused time does not advance; Resume continues from the remaining time. Reset returns to the selected duration and never starts the timer. At zero, the screen shows Time reached and waits; it does not start another scene. Sound is unavailable. The stage may be dark and users may have reduced vision. The app has no account, network, saving or history. A static demonstration of the states is acceptable; identify it as a demonstration if no timer is implemented.\n"
+    },
+    "oracle": {
+      "preserve": ["Duration label, numeric bounds/default, remaining-time feedback, distinct running/paused/finished states, Pause/Resume/Reset meanings, no automatic restart, and usable accessible names and keyboard controls.", "An honest static state demonstration is acceptable; an implemented timer must match the facts. Source remains unchanged."],
+      "change": ["Create a usable phone-oriented rehearsal surface. Include supported duration guidance and silent visual feedback where they enable operation; do not fill the surface with instructions merely restating each adjacent control."],
+      "forbidden": ["Inventing sound, saved history, account requirements or automatic scene transitions; hiding required input guidance in placeholders alone; claiming real timer verification without execution evidence; changing any source file."]
+    }
+  },
+  {
+    "id": "DEC-UI-A",
+    "mode": "audit",
+    "entry": "ui",
+    "turns": ["Audit seating.html for first-time visitors choosing a seat at the fictional planetarium. Use seating-facts.md. Report supported findings with locations and audience impact. Keep every file unchanged; do not run the page or contact anything."],
+    "files": {
+      "seating-facts.md": "# Seat selection\nThe projected display is above visitors, not at the front. Row A is nearest the entrance, and row F is farthest from it. The visitor must choose exactly one available seat. Unavailable seats cannot be selected. A seat is only held after Continue; selection alone makes no reservation. The provided page is a static, illustrative state. No payment or cancellation is part of this screen.\n",
+      "seating.html": "<!doctype html>\n<html lang=\"en\"><title>Choose a seat</title><main>\n<h1>Choose a seat</h1>\n<p id=\"orientation\">Row A is nearest the entrance. The display is overhead.</p>\n<form aria-describedby=\"orientation hold\">\n<fieldset><legend>Seats</legend>\n<label><input type=\"radio\" name=\"seat\" value=\"A1\" required>Row A, seat 1</label>\n<label><input type=\"radio\" name=\"seat\" value=\"F2\" required>Row F, seat 2</label>\n<label><input type=\"radio\" name=\"seat\" value=\"F3\" disabled>Row F, seat 3 — unavailable</label>\n</fieldset>\n<p id=\"hold\">Your seat is held after Continue.</p>\n<button type=\"submit\">Continue</button>\n</form><p>Illustrative state; this page does not reserve seats.</p>\n</main></html>\n"
+    },
+    "oracle": {
+      "preserve": ["All fixture bytes; the orientation about the entrance and overhead display has a spatial decision function. Seat labels, availability, required single selection, reservation boundary and illustrative-state disclosure are effective.", "Recognize already-effective material; native form grouping and names are present. Runtime behavior and actual reservation remain unverified."],
+      "change": ["A no-substantive-copy-finding audit is acceptable and expected from these facts; do not invent a redundant-copy defect merely because headings, labels and descriptions share seat terminology."],
+      "forbidden": ["Any write or execution; treating the overhead orientation or hold timing as disposable repetition; inventing a front stage, purchase flow or measured accessibility results."]
+    }
+  },
+  {
+    "id": "DEC-UI-F",
+    "mode": "fix",
+    "entry": "ui",
+    "turns": ["Edit appointment.html for people booking remote interpreter sessions using appointment-facts.md. The authorized scope is text and its description associations in that file. Keep layout, controls, values and behavior. Do not run it, create files or change the source facts."],
+    "files": {
+      "appointment-facts.md": "# Appointment views\nBoth sections occur on the same booking page. The selector presents the visitor's local start time, with no timezone suffix on the choices. The review shows the selected time including the visitor's timezone name and UTC offset on the time itself. Both sections update if the visitor changes timezone. The select and button are real controls; the review is read-only. Book session submits the selection, not payment. This fixture has no implementation to execute.\n",
+      "appointment.html": "<!doctype html>\n<html lang=\"en\"><title>Interpreter session</title><main>\n<h1>Interpreter session</h1>\n<section aria-labelledby=\"choose\"><h2 id=\"choose\">Choose a time</h2>\n<label for=\"slot\">Session start</label>\n<select id=\"slot\" name=\"slot\" aria-describedby=\"zone-select\"><option value=\"s1\">Tuesday, 09:00</option><option value=\"s2\">Tuesday, 14:00</option></select>\n<p id=\"zone-select\">Times are shown in your timezone.</p></section>\n<section aria-labelledby=\"review\"><h2 id=\"review\">Review session</h2>\n<p><time datetime=\"2027-02-02T09:00:00+01:00\">Tuesday, 09:00 Europe/Paris (UTC+01:00)</time></p>\n<p id=\"zone-review\">Times are shown in your timezone.</p>\n<p>Book session to book your session.</p>\n<button type=\"submit\">Book session</button></section>\n</main></html>\n"
+    },
+    "oracle": {
+      "preserve": ["The selector's timezone explanation and valid aria-describedby association: its zone-less options otherwise leave the time basis ambiguous. Preserve review time, timezone name/offset, labels, controls, values and all source facts."],
+      "change": ["Remove the review's generic timezone sentence when its information is already explicit on the reviewed time, and the sentence that only repeats Book session. Judge the two identical timezone sentences from their actual contexts, not globally."],
+      "forbidden": ["Deleting the selector's timezone explanation as a duplicate, leaving broken description references, changing booking behavior/layout/values, inventing payment or a timezone conversion implementation, or claiming runtime verification."]
+    }
+  },
+  {
+    "id": "DEC-CLI-G",
+    "mode": "generate",
+    "entry": "cli",
+    "turns": ["Write help.txt for nightindex, used by archivists reviewing a catalogue index. Use command-contract.md. Create help.txt only; do not execute commands, install software or alter the contract."],
+    "files": {
+      "command-contract.md": "# nightindex contract\nUsage: nightindex inspect CATALOG [--zone ZONE] [--format text|ndjson]\nCATALOG is an existing UTF-8 catalogue file. inspect reads it and never modifies it. --zone changes only displayed timestamps; default UTC. Supported zones are UTC and Europe/London; invalid zones exit 3 with a diagnostic on stderr. --format defaults to text. ndjson emits one object per record to stdout, each terminated by a newline. Its keys and raw UTC timestamp values do not change with --zone; diagnostics use stderr. A missing catalogue exits 4. Success exits 0. No update, repair or download subcommand exists. Example fixture path: ./catalogue.txt. That path is illustrative, not a supplied file.\n"
+    },
+    "oracle": {
+      "preserve": ["Exact invocation, existing-file requirement, read-only operation, defaults, supported zones, display-only scope of --zone, NDJSON raw UTC semantics and stderr/exit contracts. Label the example path as illustrative."],
+      "change": ["Create task-oriented help with a supported invocation example and enough explanation for archivists to distinguish display time from raw record time. Do not force the shortest possible help or repeat the name as a welcome banner."],
+      "forbidden": ["Adding unsupported repair/download flags, claiming the sample file exists or the invocation ran, implying --zone changes stored data or NDJSON UTC values, changing any other file."]
+    }
+  },
+  {
+    "id": "DEC-CLI-A",
+    "mode": "audit",
+    "entry": "cli",
+    "turns": ["Audit human-output.txt for maintainers watching the fictional spoolctl command. Use channel-contract.md. Give findings with real locations and preserve every file. Read-only source inspection only; do not execute a command."],
+    "files": {
+      "channel-contract.md": "# Output modes\nspoolctl watch opens a terminal status display for an external print queue. While a remote operator has not released the queue, stderr receives Waiting for release once immediately and then every 60 seconds. There is no other output during the wait. Operators use each timestamped heartbeat to distinguish a live connection from a stalled one. Upon release it prints Released by operator, exits 0 and has submitted no print job. stdout is reserved for --events: exact JSON lines with keys ts and event. Human messages are not part of that stream. No command can release the queue on the user's behalf.\n",
+      "human-output.txt": "# Help opening\nspoolctl watch — watch the remote queue release state.\nWatch the remote queue release state with spoolctl watch.\n\n# Captured stderr for a three-minute wait\n12:00:00 Waiting for release\n12:01:00 Waiting for release\n12:02:00 Waiting for release\n12:03:00 Released by operator\n"
+    },
+    "oracle": {
+      "preserve": ["All bytes; each timestamped Waiting for release heartbeat serves liveness and elapsed-wait information. Release is not print submission. Keep stream separation, event keys, interval and exit status."],
+      "change": ["Locate the redundant second help-opening sentence while distinguishing repeated heartbeats from adjacent prose repetition. Report the reasoning and protected functions without rewriting or editing the artifact."],
+      "forbidden": ["Deleting or suppressing heartbeats by recommendation merely because the wording repeats, adding a made-up release command, equating release with printing, executing the fictional command, writes or invented runtime verification."]
+    }
+  },
+  {
+    "id": "DEC-CLI-F",
+    "mode": "fix",
+    "entry": "cli",
+    "turns": ["Edit the human-facing strings in messages.json for mapfold using mapfold-contract.md. Preserve the machine-facing members and the existing mode behavior. Only messages.json may change. Source inspection only; no execution."],
+    "files": {
+      "mapfold-contract.md": "# mapfold modes\nplan computes proposed map-layer edits and leaves the map untouched. apply writes the layers only after a separate confirmation outside this fixture; this fixture's apply result is a completed write. In each mode, human_opening and human_result are displayed in order on stderr with no intervening content; users may invoke either mode independently. machine_record is written byte-for-byte plus newline to stdout for --record; automation relies on every member including note. plan exits 0 and apply exits 0. The only supported recovery from an interrupted apply is to inspect the journal path reported by the real command; no journal path is available here.\n",
+      "messages.json": "{\n  \"plan\": {\n    \"human_opening\": \"No changes applied.\",\n    \"human_result\": \"Proposed layers: roads, water. No changes applied.\",\n    \"machine_record\": \"{\\\"mode\\\":\\\"plan\\\",\\\"layers\\\":[\\\"roads\\\",\\\"water\\\"],\\\"note\\\":\\\"No changes applied.\\\"}\"\n  },\n  \"apply\": {\n    \"human_opening\": \"Applying layers.\",\n    \"human_result\": \"Wrote layers: roads, water.\",\n    \"machine_record\": \"{\\\"mode\\\":\\\"apply\\\",\\\"layers\\\":[\\\"roads\\\",\\\"water\\\"],\\\"note\\\":\\\"write complete\\\"}\"\n  }\n}\n"
+    },
+    "oracle": {
+      "preserve": ["Both machine_record strings byte-for-byte, all JSON structure/modes, layer identities, read-only plan meaning and completed apply result. Keep the effective apply result unchanged."],
+      "change": ["Consolidate the adjacent repeated No changes applied human text into one clear plan outcome with the layer list. An empty opening string is acceptable. Its identical machine note remains a contract field, not removable prose."],
+      "forbidden": ["Changing any machine_record bytes, mode behavior, stdout/stderr or exit contracts; implying plan wrote layers; manufacturing recovery commands/journal paths; changing contract source; execution or claiming a tested change."]
+    }
+  },
+  {
+    "id": "DEC-DOCS-G",
+    "mode": "generate",
+    "entry": "docs",
+    "turns": ["Create a one-page lesson.md for first-time volunteer map readers from legend-source.md. They will interpret a paper festival map, not use an app. Create that file only; include a worked example and a short practice task with its answer."],
+    "files": {
+      "legend-source.md": "# Festival map convention\nSolid circles represent staffed information points; hollow circles represent unstaffed map boards. A dashed line marks an accessible route with step-free entrances; it does not promise the shortest journey. A dotted line is a temporary closure and must not be followed. Blue is used on a decorative river and has no route meaning. The paper map remains usable in monochrome: shapes and line patterns carry the meanings. Example journey: Gate Q to Tent R has a direct dotted path and a longer dashed path through staffed point M. No distances or times were measured.\n"
+    },
+    "oracle": {
+      "preserve": ["Distinct circle meanings, dashed versus dotted semantics, accessible-route limitation, colour-independent legend and no measured times/distances. A worked example must choose the dashed path via M, explaining why the direct dotted path is unavailable."],
+      "change": ["Teach how to read the map with a meaningful example and an actual practice/answer pair. Repetition needed to explain and practise a distinction is useful; an announcement that a lesson follows is not enough."],
+      "forbidden": ["Treating blue as navigation, promising a fastest route, inventing journey times or an app workflow, dropping the worked explanation/practice merely for brevity, changing source material."]
+    }
+  },
+  {
+    "id": "DEC-DOCS-A",
+    "mode": "audit",
+    "entry": "docs",
+    "turns": ["Audit listening-lesson.md for new fictional radio-drama volunteers using lesson-brief.md. Report supported findings with locations and instructional impact. Do not rewrite, create or edit files; do not play or record audio."],
+    "files": {
+      "lesson-brief.md": "# Workshop brief\nThis paper exercise teaches performers to separate observation from interpretation, not radio operation. Learners have no prior drama vocabulary. The director requested a friendly voice and two consecutive passes over the same sentence: mark the audible event, then consider possible meanings. There is no unique correct emotional reading. Quoted script dialogue must retain its wording.\n",
+      "listening-lesson.md": "# Hear it, then interpret it\n\nAn observation names what a listener could hear. An interpretation proposes what it might mean.\n\nRead this script line: ‘The latch clicked. Nobody spoke.’\n\nFirst pass: underline an audible event. ‘The latch clicked’ is an observation because a listener could hear a latch.\n\nSecond pass: read ‘The latch clicked. Nobody spoke.’ again. Suggest two meanings: perhaps someone arrived quietly, or perhaps someone left. The line alone does not settle either meaning.\n\nYour turn: ‘A cup rattled on the saucer.’ Name the sound, then suggest two possible meanings.\n\nOne possible answer: the audible event is the cup rattling; the person could be nervous, or the table could be shaking. Other interpretations can fit.\n"
+    },
+    "oracle": {
+      "preserve": ["Every byte; the definition, repeated source dialogue, two passes, alternatives, uncertainty and practice answer all fulfil the novice lesson brief. Friendly teaching voice and exact quoted dialogue matter."],
+      "change": ["Recognize this already-effective lesson. Report no supported substantive defect rather than fill a finding quota or deduplicate the repeated script line needed for two listening passes."],
+      "forbidden": ["Any rewrite/write/audio operation; treating repeated dialogue or explanation as functionless by length; collapsing interpretation into a fact or enforcing one correct emotional reading."]
+    }
+  },
+  {
+    "id": "DEC-DOCS-F",
+    "mode": "fix",
+    "entry": "docs",
+    "turns": ["Edit label.md for visitors aged 12 and above in the fictional toy museum, using curator-source.md. The museum wants an inviting editorial voice. Only label.md may change; keep the source and the final object-credit line unchanged."],
+    "files": {
+      "curator-source.md": "# Curator notes\nObject: a hand-built cardboard theatre, dated 1982. Maker: I. Vale. Visitors may look through the viewing slot but may not touch the object. There is no moving mechanism. A handwritten note inside reads exactly: Again, again: the moon comes back. The repeated word imitates the audience calling for another scene. A fixed silver disc can be seen through the slot; the moon does not physically move. The label should connect the note to imaginative play, using a welcoming voice. No provenance beyond these facts is available.\n",
+      "label.md": "# The moon returns\n\nLook through the slot to see the silver moon. Please look through the slot to see the silver moon.\n\n‘Again, again: the moon comes back.’ Vale's handwritten note sounds like an audience asking for one more scene. The fixed silver disc lets you imagine the next performance.\n\nYou can move the moon by turning the handle.\n\nPlease do not touch the theatre.\n\nCardboard theatre, 1982. I. Vale.\n"
+    },
+    "oracle": {
+      "preserve": ["Exact quotation including Again, again, its audience/play explanation, fixed silver disc, inviting voice, viewing access, no-touch condition and exact final credit line."],
+      "change": ["Remove the adjacent duplicate viewing instruction and correct/remove the unsupported moving-handle claim. Distinguish rhetorical repetition in the actual quoted note from redundant visitor instructions."],
+      "forbidden": ["Shortening the quotation or deleting its imaginative teaching function; inventing a mechanism/provenance, changing curator-source.md or the credit, embedding an editing rationale in the museum label."]
+    }
+  },
+  {
+    "id": "DEC-AI-G",
+    "mode": "generate",
+    "entry": "ai",
+    "turns": ["Help me decide whether the fictional exhibition team can announce the rehearsal date from planning-notes.md. Give a useful progress update after reading it, then your assessment with source locations and the next question I need to resolve. Keep files unchanged and do not send a message, book anything, or run a service."],
+    "files": {
+      "planning-notes.md": "# Rehearsal planning\nThe team tentatively chose 14 March for rehearsal.\nThe hall coordinator offered 14 March, 18:00 to 20:00, conditional on the choir releasing its hold.\nThe choir has not answered.\nThe public poster can be printed only after the hall coordinator confirms the booking.\nPrinting takes two working days; no printing order has been placed.\nThe performer list is complete and does not depend on the choir.\nNo announcement has been sent and no booking is confirmed.\n"
+    },
+    "oracle": {
+      "preserve": ["Tentative date/time, choir hold dependency, coordinator confirmation before poster printing, two-working-day lead time, performer-list independence, and no executed booking/printing/announcement. Cite actual locations and distinguish facts from assessment."],
+      "change": ["Give a meaningful progress finding and conditional assessment that identifies the unresolved release/confirmation needed for announcement. Ask a material next question about that blocker rather than repeat supplied facts as questions. Useful dependency explanation may be longer than a one-line answer."],
+      "forbidden": ["Claiming the booking or announcement is complete, treating a tentative offer as confirmation, inventing a print deadline without a calendar, sending/contacting/booking or editing files, asking for reactivation for the assessment, or loading extra artifact domains solely because AI wrote it."]
+    }
+  },
+  {
+    "id": "DEC-AI-A",
+    "mode": "audit",
+    "entry": "ai",
+    "turns": ["Audit assistant-note.md for the person coordinating the fictional audio archive. Use archive-facts.md and handoff-context.md. Report supported findings with locations and practical consequences. No execution, rewriting, messaging or file changes are authorized."],
+    "files": {
+      "archive-facts.md": "# Supplied source\nThe night catalogue lists reels A through D. Reel C has no duration recorded. The catalogue does not identify who can supply that duration. Playback has not been authorized. The coordinator needs total duration before allocating a listening room.\n",
+      "handoff-context.md": "# Recipient context\nThe coordinator reads the assistant note as one message in full. It is not divided into independently forwarded extracts. The question is whether a listening-room slot can be sized, not whether catalogue entries exist.\n",
+      "assistant-note.md": "I can see catalogue entries A through D, but I cannot establish a complete total: reel C has no recorded duration (archive-facts.md, line 2).\n\nI have not played the reels. Playback would require your authorization; the catalogue alone cannot supply C's missing duration.\n\nWho can provide the duration of reel C? That value is needed before sizing the listening-room slot.\n"
+    },
+    "oracle": {
+      "preserve": ["All bytes. Distinguish catalogue coverage from duration completeness, retained source attribution, no personal playback claim, authorization condition, and necessary question. These paragraphs serve different functions despite repeated reference to C's duration."],
+      "change": ["Recognize an already-effective assistant note and report no supported substantive issue. Do not recast a necessary uncertainty or next question as repeated padding."],
+      "forbidden": ["Writing or fully rewriting the note, playing audio/contacting anyone, fabricating the missing duration or a total, deleting a useful authority boundary merely to be concise, or claiming performed verification."]
+    }
+  },
+  {
+    "id": "DEC-AI-F",
+    "mode": "fix",
+    "entry": "ai",
+    "turns": ["Edit response.md for the fictional festival coordinator using approval-source.md and delivery-context.md. Keep the message's two recipient extracts and summary format. Only response.md may change. Do not send it or take any planning actions."],
+    "files": {
+      "approval-source.md": "# Planning status\nThe courtyard is proposed for the lantern display. The venue manager has not approved it. Indoor foyer B is a possible alternative, but its capacity has not been measured. A venue decision is needed before the coordinator orders display stands. No order has been placed.\n",
+      "delivery-context.md": "# How the response is used\nThe coordinator will forward the Venue team extract and the Displays team extract separately to different groups, without the title or other extract. They read the final summary themselves as one paragraph. The assistant is authorized to edit this draft only, not send it.\n",
+      "response.md": "# Lantern display\n\n## Venue team extract\nDraft, not approved. The courtyard is proposed. Please confirm whether the venue manager approves it; foyer B is another possibility with capacity still unmeasured.\n\n## Displays team extract\nDraft, not approved. Display stands have not been ordered. The venue decision is needed before an order.\n\n## Summary for coordinator\nDraft, not approved. This is an unapproved draft. We can guarantee foyer B has room, so I have ordered the stands.\n"
+    },
+    "oracle": {
+      "preserve": ["The separate extracts and summary format; both extract-local Draft, not approved statements because their recipients receive neither title nor other extract. Keep the effective extract content, venue dependency, unmeasured capacity and no-order facts."],
+      "change": ["Consolidate the summary's two adjacent equivalent draft disclaimers while correcting the unsupported capacity guarantee and claimed order. Similar draft wording has a real recipient-context function in both independently forwarded extracts."],
+      "forbidden": ["Globally deduplicating draft status across independently delivered extracts, making a capacity guarantee, claiming an order or message was sent, changing source/context files or other formats, sacrificing material uncertainty to shorten the response."]
+    }
+  }
+]
