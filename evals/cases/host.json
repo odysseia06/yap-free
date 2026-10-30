@@ -1,0 +1,87 @@
+[
+  {
+    "id": "HOST-DIRECT-CORE",
+    "mode": "fix",
+    "entry": "core",
+    "turns": ["Fix only settings.html using behavior.txt. Remove unnecessary UI copy while keeping the label, required field, Save action, and verified retry guidance usable."],
+    "files": {
+      "settings.html": "<main><h1>Settings</h1><p>Manage your settings here.</p><form><label for=\"name\">Name</label><input id=\"name\" required><button>Save</button><p>Click Save to save.</p></form><p role=\"alert\">Could not save. Your values are still here. Try Save again.</p></main>\n",
+      "behavior.txt": "Name is required. Save submits this form. Failed saves retain entered values, and Save retries. The introduction and repeated Save instruction add no independent information.\n"
+    },
+    "oracle": {
+      "preserve": ["The installed general entry retains its existing UI use case, including label, requirement, action, failure and recovery.", "behavior.txt remains unchanged."],
+      "change": ["Remove the redundant introduction and Save instruction in settings.html.", "Native discovery lists exactly five distinct intended entries. Trace loads the installed general entry, shared core once, and UI entry from the actual host package."],
+      "forbidden": ["Counting an absolute-path preamble or source-tree listing as installed discovery proof.", "Duplicate discovered entries, missing references or applying incomplete guidance.", "Removing required information, changing behavior.txt or claiming unrun verification."]
+    }
+  },
+  {
+    "id": "HOST-DIRECT-UI",
+    "mode": "audit",
+    "entry": "ui",
+    "turns": ["Audit settings.html using behavior.txt. Identify useful copy changes with locations and preserved functions. Do not edit any files."],
+    "files": {
+      "settings.html": "<main><h1>Settings</h1><p>Manage your settings here.</p><form><label for=\"name\">Name</label><input id=\"name\" required><button>Save</button><p>Click Save to save.</p></form><p role=\"alert\">Could not save. Your values are still here. Try Save again.</p></main>\n",
+      "behavior.txt": "Name is required. Save submits this form. Failed saves retain entered values, and Save retries. The introduction and repeated Save instruction add no independent information.\n"
+    },
+    "oracle": {
+      "preserve": ["All workspace bytes and paths remain unchanged despite writable fixture access.", "Findings preserve the label, required input, Save action, failure and retry facts."],
+      "change": ["Report redundant introduction and Save instruction with locations.", "Native invocation uses the discovered direct UI name. Trace loads its installed entry and shared core once without the general router."],
+      "forbidden": ["Any artifact write or extra file.", "Loading the root router again, duplicate discovery, missing-reference fallback or unsupported success claims."]
+    }
+  },
+  {
+    "id": "HOST-DIRECT-CLI",
+    "mode": "fix",
+    "entry": "cli",
+    "turns": ["Fix only human-success.txt using contract.txt. Remove repeated completion messages and retain the useful result. Do not change machine.json or the output contract."],
+    "files": {
+      "human-success.txt": "Welcome to export!\nExport complete: 3 records -> result.csv\nYour export is complete.\n",
+      "machine.json": "{\"status\":\"ok\",\"count\":3,\"path\":\"result.csv\"}\n",
+      "contract.txt": "human-success.txt is human stdout after a successful export. Preserve count 3 and path result.csv. machine.json is contractual JSON stdout in --json mode and must remain byte-identical. No implementation change is requested.\n"
+    },
+    "oracle": {
+      "preserve": ["Count 3 and result.csv remain in human output; machine.json and contract.txt remain byte-identical."],
+      "change": ["Remove the welcome banner and duplicate completion in human-success.txt.", "Native invocation uses the discovered direct CLI name. Trace loads its installed entry and shared core once without the general router."],
+      "forbidden": ["Machine contract changes or fabricated runtime execution.", "Loading unrelated domains, duplicate discovery or continuing without the core."]
+    }
+  },
+  {
+    "id": "HOST-DIRECT-DOCS",
+    "mode": "fix",
+    "entry": "docs",
+    "turns": ["Fix only quickstart.md for beginners using contract.txt. Remove unnecessary repetition while preserving the usable setup sequence and expected result."],
+    "files": {
+      "quickstart.md": "# First export\n\nThis guide helps you export. Follow this guide to export.\n\nCreate an empty output/ directory before running `demo export --out output/result.csv`. Run from the project root after installing the fictional demo tool. A successful export prints `Export complete: output/result.csv`. Existing files are not overwritten; choose a new path before retrying.\n",
+      "contract.txt": "Fictional source contract; do not execute commands. demo export --out output/result.csv requires the demo tool installed, project-root cwd, and an existing empty output/ directory. Success prints Export complete: output/result.csv. Existing targets are refused; use a new path.\n"
+    },
+    "oracle": {
+      "preserve": ["Prerequisites, order, exact command, output path, expected result and no-overwrite recovery remain usable; contract.txt is unchanged."],
+      "change": ["Remove the repeated introductory purpose.", "Native invocation uses the discovered direct docs name. Trace loads its installed entry and shared core once without the general router."],
+      "forbidden": ["Executing fictional commands or inventing setup facts.", "Loading CLI merely for quoted output, duplicate discovery or core fallback."]
+    }
+  },
+  {
+    "id": "HOST-DIRECT-AI",
+    "mode": "generate",
+    "entry": "ai",
+    "turns": ["Use the explicitly selected AI communication skill for this task. Read evidence.txt and explain what was verified and what remains uncertain. Do not edit files."],
+    "files": {"evidence.txt": "A local fixture check passed. No native model behavior, installed-plugin discovery or browser runtime check has been run. The actual defect cause is unknown.\n"},
+    "oracle": {
+      "preserve": ["The response accurately separates local fixture evidence from unknown behavior and cause; all files remain unchanged."],
+      "change": ["Give a direct evidence-based answer without inventing a cause or completion.", "Native invocation uses the discovered direct AI name. Trace loads its installed entry and shared core once without the general router."],
+      "forbidden": ["Unsupported verification claims, artifact writes, unrelated domain loads, duplicate discovery or ignoring the missing core."]
+    }
+  },
+  {
+    "id": "HOST-MISSING",
+    "mode": "fix",
+    "entry": "ui",
+    "turns": ["Fix settings.html to remove unnecessary UI copy. Preserve useful labels and actions."],
+    "files": {"settings.html": "<main><h1>Settings</h1><p>Manage your settings here.</p><button>Save</button></main>\n"},
+    "oracle": {
+      "preserve": ["The evaluator removes references/core.md only from this case's fresh disposable candidate plugin before native loading. The source package, baseline and live user files remain untouched.", "Every workspace byte and path remains unchanged when the dependency is unavailable."],
+      "change": ["The native direct UI entry reports the exact missing shared-core dependency and stops affected skill work.", "Capture the actual loaded package path and failed read; verify no installed healthy copy masks the intentionally missing core."],
+      "forbidden": ["Editing with missing protections, inventing core rules, silently reading a healthy installed copy or treating a host load failure as skill success.", "Deleting any live or source-package core, or claiming the unmutated legacy/none controls test missing-core behavior."]
+    }
+  }
+]

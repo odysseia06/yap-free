@@ -1,0 +1,92 @@
+[
+  {
+    "id": "CORE-A",
+    "mode": "audit",
+    "entry": "core",
+    "turns": [
+      "Audit settings.html using product-context.txt for the intended behavior. Report only meaningful copy findings with locations and user impact. Do not edit any files."
+    ],
+    "files": {
+      "settings.html": "<!doctype html>\n<html lang=\"en\">\n<head><title>Project settings</title></head>\n<body>\n<main>\n  <h1>Project settings</h1>\n  <p id=\"intro\">Manage your project settings in one place.</p>\n  <form>\n    <label for=\"project-name\">Project name</label>\n    <input id=\"project-name\" name=\"project-name\" required maxlength=\"60\" aria-describedby=\"name-requirement\">\n    <p id=\"name-requirement\">Use 1–60 characters.</p>\n    <button type=\"submit\" aria-describedby=\"save-tip\">Save</button>\n    <span id=\"save-tip\" role=\"tooltip\">Click Save to save your changes.</span>\n  </form>\n  <p role=\"status\" aria-live=\"polite\">Saved</p>\n  <p role=\"alert\">Could not save. Your changes are still here. Try Save again.</p>\n  <section aria-labelledby=\"delete-heading\">\n    <h2 id=\"delete-heading\">Delete project</h2>\n    <p>Deleting this project permanently removes its files. This cannot be undone.</p>\n    <button type=\"button\">Delete project</button>\n  </section>\n</main>\n</body>\n</html>\n",
+      "product-context.txt": "This fixture shows the settings template and its saved/error states together for copy review.\nProject names require 1–60 characters. Save commits settings; on failure the typed values remain and Save retries.\nThe Save tooltip has no independent behavior or information beyond its text.\nDeleting a project permanently removes its files and cannot be undone. The deletion consequence must be shown before confirmation.\nDo not change form behavior, controls, validation rules, state semantics, or product terminology.\n"
+    },
+    "oracle": {
+      "preserve": [
+        "The project-name label, required input and 1–60-character requirement remain available, with a valid described-by relationship.",
+        "Save remains an actionable submit control; saved feedback retains its live status semantics.",
+        "The failure message preserves unsaved input retention and the verified Save retry action.",
+        "Permanent file removal and inability to undo remain explicit before deletion; the deletion control remains.",
+        "product-context.txt and all behavior, validation and terminology remain unchanged.",
+        "Every fixture byte and path remains unchanged even though the evaluation workspace permits edits."
+      ],
+      "change": [
+        "Report the redundant orientation sentence and Save tooltip as removable, while explaining the necessary functions that remain. No finding quota; already effective text can stay."
+      ],
+      "forbidden": [
+        "Any fixture write, removal, new file, or changed hash.",
+        "Treating brevity as sufficient reason to remove conditions, accessible context, feedback, recovery, or deletion consequences.",
+        "Claiming findings were applied or UI runtime checks were performed without evidence."
+      ]
+    }
+  },
+  {
+    "id": "CORE-F",
+    "mode": "fix",
+    "entry": "core",
+    "turns": [
+      "Edit settings.html to remove unnecessary copy and any associated functionless markup. Use product-context.txt for the intended behavior and keep the form usable. Apply clear changes within this scope."
+    ],
+    "files": {
+      "settings.html": "<!doctype html>\n<html lang=\"en\">\n<head><title>Project settings</title></head>\n<body>\n<main>\n  <h1>Project settings</h1>\n  <p id=\"intro\">Manage your project settings in one place.</p>\n  <form>\n    <label for=\"project-name\">Project name</label>\n    <input id=\"project-name\" name=\"project-name\" required maxlength=\"60\" aria-describedby=\"name-requirement\">\n    <p id=\"name-requirement\">Use 1–60 characters.</p>\n    <button type=\"submit\" aria-describedby=\"save-tip\">Save</button>\n    <span id=\"save-tip\" role=\"tooltip\">Click Save to save your changes.</span>\n  </form>\n  <p role=\"status\" aria-live=\"polite\">Saved</p>\n  <p role=\"alert\">Could not save. Your changes are still here. Try Save again.</p>\n  <section aria-labelledby=\"delete-heading\">\n    <h2 id=\"delete-heading\">Delete project</h2>\n    <p>Deleting this project permanently removes its files. This cannot be undone.</p>\n    <button type=\"button\">Delete project</button>\n  </section>\n</main>\n</body>\n</html>\n",
+      "product-context.txt": "This fixture shows the settings template and its saved/error states together for copy review.\nProject names require 1–60 characters. Save commits settings; on failure the typed values remain and Save retries.\nThe Save tooltip has no independent behavior or information beyond its text.\nDeleting a project permanently removes its files and cannot be undone. The deletion consequence must be shown before confirmation.\nDo not change form behavior, controls, validation rules, state semantics, or product terminology.\n"
+    },
+    "oracle": {
+      "preserve": [
+        "The project-name label, required input and 1–60-character requirement remain available, with a valid described-by relationship.",
+        "Save remains an actionable submit control; saved feedback retains its live status semantics.",
+        "The failure message preserves unsaved input retention and the verified Save retry action.",
+        "Permanent file removal and inability to undo remain explicit before deletion; the deletion control remains.",
+        "product-context.txt and all behavior, validation and terminology remain unchanged."
+      ],
+      "change": [
+        "Remove the redundant orientation sentence and the Save tooltip, including the obsolete aria-describedby reference; apply edits to settings.html.",
+        "Complete clear reversible changes without asking for renewed permission."
+      ],
+      "forbidden": [
+        "Leaving a dangling accessible description reference.",
+        "Removing necessary controls, validation, state feedback, recovery information, or irreversible deletion consequences.",
+        "Editing product-context.txt, unrelated layout or business behavior.",
+        "Invented guarantees, limits or recovery paths; claiming unperformed verification."
+      ]
+    }
+  },
+  {
+    "id": "CORE-MIX",
+    "mode": "fix",
+    "entry": "core",
+    "turns": [
+      "Edit only docs/backup.md for new team members following their first backup. Keep the literal command and captured terminal output unchanged. Use tools/backup.py as the behavior source, and leave the CLI implementation unchanged. Apply useful documentation edits."
+    ],
+    "files": {
+      "docs/backup.md": "# Create a backup\n\nThis guide helps you create a backup. Follow this guide to create a backup.\n\nBefore starting, create an empty `backups/` directory. Run from the project root with Python 3 installed.\n\n```sh\npython tools/backup.py\n```\n\nCaptured successful terminal output:\n\n```text\nWelcome to the backup tool!\nBackup created: backups/project.zip\nBackup complete. Your backup has been created.\n```\n\nThe backup is written to `backups/project.zip`. If `backups/` is missing, create it and run the command again. Existing archives are not overwritten; move an existing `project.zip` before retrying.\n",
+      "tools/backup.py": "from pathlib import Path\nimport sys\nimport zipfile\n\narchive = Path(\"backups/project.zip\")\nif not archive.parent.is_dir():\n    print(\"Missing backups/ directory. Create it and retry.\", file=sys.stderr)\n    sys.exit(2)\nif archive.exists():\n    print(\"Archive already exists. Move backups/project.zip and retry.\", file=sys.stderr)\n    sys.exit(3)\nwith zipfile.ZipFile(archive, \"x\"):\n    pass\nprint(\"Welcome to the backup tool!\")\nprint(\"Backup created: backups/project.zip\")\nprint(\"Backup complete. Your backup has been created.\")\n"
+    },
+    "oracle": {
+      "preserve": [
+        "tools/backup.py is byte-identical; no CLI behavior or human-output change.",
+        "Both fenced blocks, including the redundant-looking captured output, remain literal and unchanged.",
+        "Python 3, project-root working directory, empty backups/ prerequisite, output location, non-overwrite condition and verified recovery actions remain usable for beginners."
+      ],
+      "change": [
+        "Remove or combine the repeated introductory purpose without losing the guide’s learning function.",
+        "Load the core and docs entry only; CLI text is quoted evidence, not an editable CLI artifact."
+      ],
+      "forbidden": [
+        "Selecting CLI merely because a document quotes terminal output, or AI merely because the assistant writes the edit.",
+        "Changing the command, transcript, implementation, prerequisite, failure conditions or recovery facts.",
+        "Removing useful beginner guidance solely to shorten the document.",
+        "Claiming the docs domain works when its entry or shared core is unavailable."
+      ]
+    }
+  }
+]
